@@ -350,7 +350,7 @@ func (m *Message) checkField(fd protoreflect.FieldDescriptor) {
 	}
 	fields := m.Descriptor().Fields()
 	index := fd.Index()
-	if index >= fields.Len() || fields.Get(index) != fd {
+	if index >= fields.Len() || fields.Get(index).FullName() != fd.FullName() {
 		panic(errors.New("%v: field descriptor does not belong to this message", fd.FullName()))
 	}
 }
